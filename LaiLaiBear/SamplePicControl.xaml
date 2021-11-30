@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="LaiLaiBear.SamplePicControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LaiLaiBear"
+             mc:Ignorable="d" 
+            d:DesignHeight="240" d:DesignWidth="210" ContextMenu="{StaticResource ParasiteMenu}">
+    <Canvas Height="240" Width="210">
+        <Image Canvas.Left="5"  Height="200" Width="200" Stretch="Uniform" Name="Picture"></Image>
+        <TextBox Name="PicNote" TextWrapping="NoWrap" Canvas.Top="210" TextAlignment="Center" Canvas.Left="5"  Width="200" FontSize="19" >
+            <TextBox.Resources>
+                <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Center">
+                    <VisualBrush.Visual>
+                        <TextBlock FontStyle="Italic" Text="请输入名称"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </TextBox.Resources>
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource HintText}"/>
+                        </Trigger>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="Background" Value="{StaticResource HintText}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+    </Canvas>
+</UserControl>

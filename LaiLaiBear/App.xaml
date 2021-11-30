@@ -1,0 +1,21 @@
+﻿<Application x:Class="LaiLaiBear.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LaiLaiBear"
+             StartupUri="StartUp.xaml">
+    <Application.Resources>
+        <ContextMenu x:Key="ParasiteMenu">
+            <MenuItem Name="ParasiteDelete" Header="删除" Click="ParasiteDelete_Click"/>
+        </ContextMenu>
+
+        <ContextMenu x:Key="UserMenu">
+            <MenuItem Name="UserDelete" Header="删除" Click="UserDelete_Click"/>
+        </ContextMenu>
+
+
+        <ContextMenu x:Key="Skin">
+            <MenuItem Name="Skin" Header="主题" Click="Skin_Click"/>
+        </ContextMenu>
+
+    </Application.Resources>
+</Application>

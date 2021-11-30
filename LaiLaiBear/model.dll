@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+		<title></title>
+		<style >
+			@charset "utf-8";img{max-width:100%}
+			body{margin:0 auto;color:#222;font-weight:bold;font-family:'宋体';}
+			*{box-sizing:border-box;-webkit-box-sizing:border-box}
+			body a{font-family:'宋体';font-weight:bold;color:#222}
+			ul,li,p{list-style:none;margin:0;padding:0}
+			i{font-style:normal}
+			.ui-input{width:100%;border:0;outline:0;-webkit-appearance:none;background-color:transparent;font-size:inherit;color:inherit}
+			.page-container{padding:30px 0}
+			.main{width:1024px;margin:0 auto}
+			.page-head{text-align:center;margin-bottom:10px}
+			.page-head .page-title{font-size:50px}
+			.page-head .page-desc{font-size:32px;font-weight:normal;font-family:'华文行楷'}
+			.page-up-grid{border-top:3px solid #393938}
+			.page-updn-grid{border-top:3px solid #393938;border-bottom:3px solid #393938}
+			.page-grid{overflow:hidden;padding:10px 0}
+			.page-grid .col{padding:2px 0;float:left;width:33.33%}
+			.info-row{height:30px;position:relative;padding-left:110px;font-size:22px}
+			.info-row .txt{position:absolute;left:0;top:0;font-size:22px;height:30px;line-height:30px}
+			.info-row .ui-input{height:30px;line-height:30px}
+			.foot-info{overflow:hidden;font-size:18px;line-height:1.4}
+			.foot-info .hd{float:left}
+			.foot-info .bd{overflow:hidden}
+			.section{padding:8px 0}
+			.sec-hd{margin-bottom:10px;height:24px}
+			.sec-hd .sec-tt{float:left;font-size:22px;font-weight:bold;line-height:24px}
+			.jsc-style{overflow:hidden}
+			.jsc-style li{float:left;width:33.33%;padding:5px 0}
+			.jsc-style .jsc-box{width:175px;margin:0 auto}
+			.jsc-pic{font-size:0;line-height:1;border:1px solid #40413e}
+			.jsc-pic img{width:175px;display:block;height:175px}
+			.jsc-intro{font-size:0;text-align:center;margin-top:10px}
+			.jsc-intro *{display:inline-block;vertical-align:middle}
+			.jsc-intro .ui-input{height:24px;line-height:24px;width:32px;font-size:18px;text-align:center;border-bottom:1px solid #40413e}
+			.jsc-intro span{font-size:20px}
+			.jsc-intro .jsc-name{margin-right:13px}
+			.checks{height:24px;float:left;margin-left:40px}
+			.checks .check-label{display:block;float:left;line-height:24px;cursor:pointer;margin-right:90px}
+			.checks .check-label *{display:inline-block;vertical-align:middle;margin:0;font-weight:normal}
+			.checks .check-label span{font-size:18px;margin-left:10px;font-weight:bold}
+			.checks .check-label input{width:18px;height:18px}
+			.table{border:1px solid #40413e;width:100%;border-collapse:collapse;border-spacing:0;text-align:center}
+			.table td{font-size:20px;height:38px;border:1px solid #40413e}
+		</style>
+	</head>
+	<body oncontextmenu="return false;">
+		<div class="page-container">
+			<div class="page-head">
+				<div class="page-title">孝感市中心医院</div>
+				<div class="page-desc">儿童健康管理检查报告单</div>
+			</div>
+			<div class="main">
+				<div class="page-grid page-updn-grid">
+					<div class="col">
+						<div class="info-row" style="padding-left: 80px;">
+							<div class="txt">姓名：</div>
+							<div class="ui-input">[#姓名#] </div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="info-row">
+							<div class="txt">性别：</div>
+							<div class="ui-input">[#性别#] </div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="info-row">
+							<div class="txt">年龄：</div>
+							<div class="ui-input">[#年龄#] </div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="info-row" style="padding-left: 80px;">
+							<div class="txt">科室：</div>
+							<div class="ui-input">[#科室#]</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="info-row">
+							<div class="txt">住院号：</div>
+							<div class="ui-input">[#住院号#]</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="info-row">
+							<div class="txt">标本编号：</div>
+							<div class="ui-input">[#标本编号#]</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="info-row" style="padding-left: 80px;">
+							<div class="txt">床号：</div>
+							<div class="ui-input">[#床号#]</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="info-row">
+							<div class="txt">送检医师：</div>
+							<div class="ui-input">[#送检医师#]</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="info-row">
+							<div class="txt">送检时间：</div>
+							<div class="ui-input">[#送检时间#]</div>
+						</div>
+					</div>
+				</div>
+				<!-- 标本满意度 -->
+				<div class="section">
+					<div class="sec-hd">
+						<div class="sec-tt">标本满意度</div>
+						<div class="checks">
+							<label class="check-label">
+								<span>[#满意#]满意</span>
+							</label>
+							<label class="check-label">
+								<span>[#基本满意#]基本满意</span>
+							</label>
+							<label class="check-label">
+								<span>[#需要重新采样#]需要重新采样</span>
+							</label>
+						</div>
+					</div>
+					<table class="table">
+						<tr>
+							<td width="190">标本类型</td>
+							<td width="244">项目</td>
+							<td width="284">结果</td>
+							<td>参考值</td>
+						</tr>
+						<tr>
+							<td rowspan="4">血液</td>
+							<td>白细胞WBC</td>
+							<td>[#白细胞WBC#]</td>
+							<td>3.50--9.5010^9/L</td>
+						</tr>
+						<tr>
+							<td>红细胞RBC</td>
+							<td>[#红细胞RBC#]</td>
+							<td>38--5.110^12/L</td>
+						</tr>
+						<tr>
+							<td>血红蛋白HGB</td>
+							<td>[#血红蛋白HGB#]</td>
+							<td>115--150g/L</td>
+						</tr>
+						<tr>
+							<td>血小板PLT</td>
+							<td>[#血小板PLT#]</td>
+							<td>15--35010^9/L</td>
+						</tr>
+						<tr>
+							<td rowspan="4">尿液</td>
+							<td>尿红细胞计数</td>
+							<td>[#尿红细胞计数#]</td>
+							<td>0-17</td>
+						</tr>
+						<tr>
+							<td>尿白细胞计数</td>
+							<td>[#尿白细胞计数#]</td>
+							<td>0—25</td>
+						</tr>
+						<tr>
+							<td>未分类结晶</td>
+							<td>[#未分类结晶#]</td>
+							<td>0—28</td>
+						</tr>
+						<tr>
+							<td>病理管型</td>
+							<td>[#病理管型#]</td>
+							<td>0—17</td>
+						</tr>
+						<tr>
+							<td rowspan="5">粪便</td>
+							<td>红细胞</td>
+							<td>[#粪便红细胞#]</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>白细胞</td>
+							<td>[#粪便白细胞#]</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>虫卵</td>
+							<td>[#粪便虫卵#]</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>包囊</td>
+							<td>[#粪便包囊#]</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>结晶</td>
+							<!--<td>未见(　&radic;　)己见(　　)</td>-->
+							<td>[#粪便结晶#]</td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+				<!-- 寄生虫类型 -->
+				<div class="section">
+					<div class="sec-hd">
+						<div class="sec-tt">寄生虫类型</div>
+					</div>
+					<ul class="jsc-style">
+						<li>
+							<div class="jsc-box">
+								<div class="jsc-pic">
+									<img src="">
+								</div>
+								<div class="jsc-intro">
+									<span class="jsc-name"><u>[虫名1]</u></span>
+									<span>有</span>
+									<span><u>[num]</u></span>
+									<span>个</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="jsc-box">
+								<div class="jsc-pic">
+									<img src="">
+								</div>
+								<div class="jsc-intro">
+									<span class="jsc-name"><u>[虫名2]</u></span>
+									<span>有</span>
+									<span><u>[num]</u></span>
+										<span>个</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="jsc-box">
+								<div class="jsc-pic">
+									<img src="">
+								</div>
+								<div class="jsc-intro">
+									<span class="jsc-name"><u>[虫名3]</u></span>
+									<span>有</span>
+									<span><u>[num]</u></span>
+									<span>个</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="jsc-box">
+								<div class="jsc-pic">
+									<img src="">
+								</div>
+								<div class="jsc-intro">
+									<span class="jsc-name"><u>[虫名4]</u></span>
+									<span>有</span>
+									<span><u>[num]</u></span>
+									<span>个</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="jsc-box">
+								<div class="jsc-pic">
+									<img src="">
+								</div>
+								<div class="jsc-intro">
+									<span class="jsc-name"><u>[虫名5]</u></span>
+									<span>有</span>
+									<span><u>[num]</u></span>
+									<span>个</span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="jsc-box">
+								<div class="jsc-pic">
+									<img src="">
+								</div>
+								<div class="jsc-intro">
+									<span class="jsc-name"><u>[虫名6]</u></span>
+									<span>有</span>
+									<span><u>[num]</u></span>
+									<span>个</span>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- footer -->
+				<div class="foot">
+					<div class="page-grid page-up-grid">
+						<div class="col">
+							<div class="info-row">
+								<div class="txt">检验师：</div>
+								<div class="ui-input">[#检验师#]</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="info-row">
+								<div class="txt">审核医生：</div>
+								<div class="ui-input">[#审核医生#]</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="info-row">
+								<div class="txt">报告日期：</div>
+								<div class="ui-input">[#报告日期#]</div>
+							</div>
+						</div>
+					</div>
+					<div class="foot-info">
+						<div class="hd">注:</div>
+						<div class="bd">
+							<p>1.此报告只针对本次样本,检测结果和提示仅供临床医生参考。</p>
+							<p>2.若临床医师对本诊断有疑问,请立即与检验有关医师联系。</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

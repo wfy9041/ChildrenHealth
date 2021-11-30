@@ -1,0 +1,66 @@
+﻿<Window x:Class="LaiLaiBear.FontSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaiLaiBear"
+        mc:Ignorable="d"
+        Title="报告抬头设置" Height="450" Width="800" FontSize="20">
+    <Window.Resources>
+        <Style x:Key="BtnInfoStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="#43a9c7"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3,3,3,3" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <TextBlock Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#2f96b4"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#2a89a4"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">医院名称:</TextBlock>
+        <TextBox Grid.Column="1" VerticalAlignment="Center" Name="HospitalName" FontSize="25"></TextBox>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">字体选择:</TextBlock>
+        <ComboBox Grid.Column="1" Grid.Row="1" Name="HospitalNameFont" VerticalAlignment="Center" VerticalContentAlignment="Center"></ComboBox>
+        <TextBlock Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">报告名称:</TextBlock>
+        <TextBox Grid.Column="4" VerticalAlignment="Center" Name="ReportName" FontSize="25"></TextBox>
+        <TextBlock Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">字体选择:</TextBlock>
+        <ComboBox Grid.Column="4" Grid.Row="1" Name="ReportNameFont" VerticalAlignment="Center"  VerticalContentAlignment="Center"></ComboBox>
+        <TextBlock Grid.Row="2" VerticalAlignment="Center">字体颜色</TextBlock>
+        <Rectangle Grid.Row="2" Grid.Column="1" Margin="30 10" Name="HospitalColor" MouseLeftButtonUp="Color_MouseLeftButtonUp"></Rectangle>
+        <TextBlock Grid.Column="3" Grid.Row="2" VerticalAlignment="Center">字体颜色</TextBlock>
+        <Rectangle Grid.Row="2" Grid.Column="4" Margin="30 10" Name="ReportColor" MouseLeftButtonUp="Color_MouseLeftButtonUp"></Rectangle>
+        <TextBlock Grid.Row="3" Grid.ColumnSpan="5" FontSize="50" Foreground="{Binding ElementName=HospitalColor,Path=Fill}" Text="{Binding Path=Text,ElementName=HospitalName}"  FontFamily="{Binding ElementName=HospitalNameFont,Path=SelectedItem}" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+        <TextBlock Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="5" FontSize="32" Foreground="{Binding ElementName=ReportColor,Path=Fill}" Text="{Binding Path=Text,ElementName=ReportName}" FontFamily="{Binding ElementName=ReportNameFont,Path=SelectedItem}"  HorizontalAlignment="Center"></TextBlock>
+        <Button Grid.Column="1" Grid.Row="5" Width="200" Style="{StaticResource BtnInfoStyle}" HorizontalAlignment="Left" x:Name="Save" Click="Save_Click">保存</Button>
+        <Button Grid.Column="4" Grid.Row="5" Width="200" Style="{StaticResource BtnInfoStyle}" HorizontalAlignment="Left" Name="Cancel" Click="Cancel_Click">取消</Button>
+    </Grid>
+</Window>

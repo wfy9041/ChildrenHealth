@@ -1,0 +1,314 @@
+﻿<Window x:Class="LaiLaiBear.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaiLaiBear" 
+        mc:Ignorable="d"
+        Title="儿童健康管理" Width="1920" Height="1080" FontSize="20"   WindowStartupLocation="CenterScreen" 
+        WindowStyle="SingleBorderWindow" WindowState="Maximized" SizeChanged="Window_SizeChanged" Name="windows" >
+    <Window.Resources>
+        <Style x:Key="BtnInfoStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="#43a9c7"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3,3,3,3" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <TextBlock Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#2f96b4"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#2a89a4"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="{Binding ElementName=windows,Path=Background}" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="350"></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="99"></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="10 0 0 0"  xml:space="preserve">姓   名：</TextBlock>
+            <TextBox Name="SearchName" Margin="5 3 2 3"  Grid.Column="1" Grid.ColumnSpan="2" VerticalContentAlignment="Center"></TextBox>
+            <TextBlock Margin="10 0 0 0"  Grid.Row="1">起始时间：</TextBlock>
+            <TextBlock Margin="10 0 0 0" Grid.Row="2">结束时间：</TextBlock>
+            <DatePicker Name="SearchStartDate" Margin="5 3 2 3" FontSize="14" Grid.Row="1" 
+                        Grid.Column="1" Grid.ColumnSpan="2" VerticalContentAlignment="Center" >
+            </DatePicker>
+            <DatePicker Name="SearchEndDate" Margin="5 3 2 3" FontSize="14" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalContentAlignment="Center"></DatePicker>
+            <Button Style="{StaticResource BtnInfoStyle}" Name="Srach" Grid.Column="3" Grid.RowSpan="3" Margin="30 20 30 20" Grid.ColumnSpan="2" Click="Srach_Click">查询</Button>
+            <TabControl Grid.Row="3" Grid.ColumnSpan="5" SelectionChanged="TabControl_SelectionChanged">
+                <TabItem  Name="NoPrintTabItem" Header="未打印" >
+                    <DataGrid Background="{Binding ElementName=windows,Path=Background}" Name="NoPrintData" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Data_MouseDoubleClick" ContextMenu="{StaticResource UserMenu}" ContextMenuClosing="Data_ContextMenuClosing">
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="CornflowerBlue"/>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  Header="标本号" Binding="{Binding BBBH}" Width="3*"></DataGridTextColumn>
+                            <DataGridTextColumn  Header="姓名" Binding="{Binding Name}" Width="3*"></DataGridTextColumn>
+                            <DataGridTextColumn  Header="性别" Binding="{Binding Sex}" Width="2*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="年龄" Binding="{Binding Age}" Width="2*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Name="PrintTable" Header="已打印"  >
+                    <DataGrid Background="{Binding ElementName=windows,Path=Background}" Name="PrintData" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Data_MouseDoubleClick" ContextMenu="{StaticResource UserMenu}" ContextMenuClosing="Data_ContextMenuClosing">
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="CornflowerBlue"/>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  Header="标本号" Binding="{Binding BBBH}" Width="3*"></DataGridTextColumn>
+                            <DataGridTextColumn  Header="姓名" Binding="{Binding Name}" Width="3*"></DataGridTextColumn>
+                            <DataGridTextColumn  Header="性别" Binding="{Binding Sex}" Width="2*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="年龄" Binding="{Binding Age}" Width="2*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Name="All" Header="全部">
+                    <DataGrid Background="{Binding ElementName=windows,Path=Background}" Name="AllData" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Data_MouseDoubleClick" ContextMenu="{StaticResource UserMenu}" ContextMenuClosing="Data_ContextMenuClosing">
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="CornflowerBlue"/>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  Header="标本号" Binding="{Binding BBBH}" Width="3*"></DataGridTextColumn>
+                            <DataGridTextColumn  Header="姓名" Binding="{Binding Name}" Width="3*"></DataGridTextColumn>
+                            <DataGridTextColumn  Header="性别" Binding="{Binding Sex}" Width="2*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="年龄" Binding="{Binding Age}" Width="2*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <TabControl ContextMenu="{StaticResource Skin}" x:Name="workbeen" Grid.Column="1"  SelectionChanged="workbeen_SelectionChanged" Background="{Binding ElementName=windows,Path=Background}">
+            <!-- Info Input-->
+            <TabItem Header="信息"  Width="80px">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="131*" ></ColumnDefinition>
+                        <ColumnDefinition Width="64*"/>
+                        <ColumnDefinition Width="195*" ></ColumnDefinition>
+                        <ColumnDefinition Width="195*" ></ColumnDefinition>
+                        <ColumnDefinition Width="195*" ></ColumnDefinition>
+                        <ColumnDefinition Width="194*" ></ColumnDefinition>
+                        <ColumnDefinition Width="194*" ></ColumnDefinition>
+                        <ColumnDefinition Width="194*" ></ColumnDefinition>
+                        <ColumnDefinition Width="194*" ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="2">内部测试版本</TextBlock>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1" Margin="0,6">姓名:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="5" HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0,6">科室:</TextBlock>
+                    <TextBlock Grid.Row="2" HorizontalAlignment="Right"  VerticalAlignment="Center" Grid.Column="1" Margin="0,6">床号:</TextBlock>
+                    <TextBox Name="C_Name" TabIndex="1" Grid.Row="0" Grid.Column="2"     VerticalAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                    <TextBox Name="C_Ks" TabIndex="5" Grid.Column="6" Grid.Row="1"     VerticalAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                    <TextBox Name="C_Ch" TabIndex="6" Grid.Row="2" Grid.Column="2"    VerticalAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                    <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" xml:space="preserve" Grid.ColumnSpan="2"  >性       别:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center" xml:space="preserve" Grid.ColumnSpan="2" >住  院  号:</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0,6">送检医师:</TextBlock>
+                    <!--<TextBox Name="C_Sex" TabIndex="2" Grid.Row="0" Grid.Column="4"     VerticalAlignment="Center" VerticalContentAlignment="Center"></TextBox>-->
+                    <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Horizontal">
+                        <RadioButton Name="C_Sex_M" IsChecked="True"  VerticalAlignment="Center" VerticalContentAlignment="Center" >男</RadioButton>
+                        <RadioButton Name="C_Sex_W" VerticalAlignment="Center" VerticalContentAlignment="Center"  Margin="10 0 0 0" >女</RadioButton>
+                    </StackPanel>
+                   
+                    <TextBox Name="C_Zyh" TabIndex="4" Grid.Row="1" Grid.Column="4"    VerticalAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                    <TextBox Name="C_Sjys" TabIndex="7" Grid.Row="2" Grid.Column="4"    VerticalAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                    <TextBlock Grid.Row="0" Grid.Column="5" HorizontalAlignment="Right" VerticalAlignment="Center" xml:space="preserve">年龄:</TextBlock>
+                    <TextBlock Grid.Row="1"  HorizontalAlignment="Right"  VerticalAlignment="Center" xml:space="preserve" Grid.ColumnSpan="2" Margin="0,6">标本编号:</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="5" HorizontalAlignment="Right"  VerticalAlignment="Center" >送检时间:</TextBlock>
+                    <TextBox Name="C_Age" TabIndex="3" Grid.Row="0" Grid.Column="6"    VerticalAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                    <TextBox Name="C_Bbbh" Grid.Row="1"  Grid.Column="2"    VerticalAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                    <DatePicker Name="C_Sjrq" TabIndex="8" Grid.Row="2" Grid.Column="6"   VerticalAlignment="Center"  VerticalContentAlignment="Center"></DatePicker>
+                    <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,6">标本满意度:</TextBlock>
+                    <RadioButton Name="C_My" Grid.Row="3" IsChecked="True" Grid.Column="2"  HorizontalAlignment="Center" VerticalContentAlignment="Center" >满意</RadioButton>
+                    <RadioButton Name="C_Jbmy" Grid.Row="3" Grid.Column="3"  HorizontalAlignment="Center" VerticalContentAlignment="Center" >基本满意</RadioButton>
+                    <RadioButton Name="C_Xycxcy" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalContentAlignment="Center" >需要重新采样</RadioButton>
+                    <GroupBox Header="血液" Grid.Row="4" Grid.ColumnSpan="5" Grid.RowSpan="6">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">项目</TextBlock>
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center">结果</TextBlock>
+                            <TextBlock Grid.Column="2" HorizontalAlignment="Center"  VerticalAlignment="Center">参考值</TextBlock>
+                            <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">白细胞WBC:</TextBlock>
+                            <TextBlock Grid.Row="2" HorizontalAlignment="Right"  VerticalAlignment="Center">红细胞RBC:</TextBlock>
+                            <TextBlock Grid.Row="3" HorizontalAlignment="Right"  VerticalAlignment="Center">血红蛋白HGB:</TextBlock>
+                            <TextBlock Grid.Row="4" HorizontalAlignment="Right"  VerticalAlignment="Center">血小板PLT:</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" xml:space="preserve">3.50--9.50  10^9/L</TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" xml:space="preserve">3.80--5.10  10^12/L</TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" xml:space="preserve">115--150  g/L</TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" xml:space="preserve">125--350  10^9/L</TextBlock>
+                            <TextBox Name="C_xy_bxb" Grid.Row="1" Grid.Column="1"   Margin="5 0 5 0"  VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+                            <TextBox Name="C_xy_hxb" Grid.Row="2" Grid.Column="1"   Margin="5 0 5 0" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+                            <TextBox Name="C_xy_xhdb" Grid.Row="3" Grid.Column="1"   Margin="5 0 5 0" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+                            <TextBox Name="C_xy_xxb" Grid.Row="4" Grid.Column="1"   Margin="5 0 5 0"  VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="尿液" Grid.Row="11" Grid.ColumnSpan="5" Grid.RowSpan="6">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">项目</TextBlock>
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center">结果</TextBlock>
+                            <TextBlock Grid.Column="2" HorizontalAlignment="Center"  VerticalAlignment="Center">参考值</TextBlock>
+                            <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">尿红细胞计数</TextBlock>
+                            <TextBlock Grid.Row="2" HorizontalAlignment="Right"  VerticalAlignment="Center">尿白细胞计数</TextBlock>
+                            <TextBlock Grid.Row="3" HorizontalAlignment="Right"  VerticalAlignment="Center">未分类结晶</TextBlock>
+                            <TextBlock Grid.Row="4" HorizontalAlignment="Right"  VerticalAlignment="Center">病理管型</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" xml:space="preserve"  Text="0--17"></TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" xml:space="preserve" Text="0--25"></TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" xml:space="preserve" Text="0--28"></TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" xml:space="preserve" Text="0--1"></TextBlock>
+                            <TextBox Name="C_ny_nhxbjs" Grid.Row="1" Grid.Column="1"   Margin="5 0 5 0"  VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+                            <TextBox Name="C_ny_nbxbjs" Grid.Row="2" Grid.Column="1"   Margin="5 0 5 0" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+                            <TextBox Name="C_ny_wfljj" Grid.Row="3" Grid.Column="1"   Margin="5 0 5 0" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+                            <TextBox Name="C_ny_blgx" Grid.Row="4" Grid.Column="1"   Margin="5 0 5 0"  VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="粪便"  Grid.Row="18" Grid.ColumnSpan="5" Grid.RowSpan="7">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                                <RowDefinition ></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">项目</TextBlock>
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Grid.ColumnSpan="2">结果</TextBlock>
+                            <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">红细胞</TextBlock>
+                            <TextBlock Grid.Row="2" HorizontalAlignment="Right"  VerticalAlignment="Center">白细胞</TextBlock>
+                            <TextBlock Grid.Row="3" HorizontalAlignment="Right"  VerticalAlignment="Center">虫卵</TextBlock>
+                            <TextBlock Grid.Row="4" HorizontalAlignment="Right"  VerticalAlignment="Center">包囊</TextBlock>
+                            <TextBlock Grid.Row="5" HorizontalAlignment="Right"  VerticalAlignment="Center">结晶</TextBlock>
+                            <RadioButton GroupName="fb_bxb" Name="fb_hxb_K" Grid.Row="1" Grid.Column="1"   Margin="5 0 5 0"  HorizontalAlignment="Center" VerticalContentAlignment="Center">阴性</RadioButton>
+                            <RadioButton GroupName="fb_hxb" Name="fb_bxb_K" Grid.Row="2" Grid.Column="1"   Margin="5 0 5 0" HorizontalAlignment="Center" VerticalContentAlignment="Center">阴性</RadioButton>
+                            <RadioButton GroupName="fb_cl" Name="fb_cl_H" Grid.Row="3" Grid.Column="1"   Margin="5 0 5 0" HorizontalAlignment="Center" VerticalContentAlignment="Center">未见</RadioButton>
+                            <RadioButton GroupName="fb_bn" Name="fb_bl_H" Grid.Row="4" Grid.Column="1"   Margin="5 0 5 0"  HorizontalAlignment="Center" VerticalContentAlignment="Center">未见</RadioButton>
+                            <RadioButton GroupName="fb_jj" Name="fb_jj_H" Grid.Row="5" Grid.Column="1"   Margin="5 0 5 0"  HorizontalAlignment="Center" VerticalContentAlignment="Center">未见</RadioButton>
+                            <RadioButton GroupName="fb_bxb" Name="fb_hxb_A" Grid.Row="1" Grid.Column="2"   Margin="5 0 5 0"  HorizontalAlignment="Center" VerticalContentAlignment="Center">阳性</RadioButton>
+                            <RadioButton GroupName="fb_hxb" Name="fb_bxb_A" Grid.Row="2" Grid.Column="2"   Margin="5 0 5 0" HorizontalAlignment="Center" VerticalContentAlignment="Center">阳性</RadioButton>
+                            <RadioButton GroupName="fb_cl"  Name="fb_cl_S" Grid.Row="3" Grid.Column="2"   Margin="5 0 5 0" HorizontalAlignment="Center" VerticalContentAlignment="Center">己见</RadioButton>
+                            <RadioButton GroupName="fb_bn" Name="fb_bl_S" Grid.Row="4" Grid.Column="2"   Margin="5 0 5 0"  HorizontalAlignment="Center" VerticalContentAlignment="Center">己见</RadioButton>
+                            <RadioButton GroupName="fb_jj" Name="fb_jj_S" Grid.Row="5" Grid.Column="2"   Margin="5 0 5 0"  HorizontalAlignment="Center" VerticalContentAlignment="Center">己见</RadioButton>
+                        </Grid>
+                    </GroupBox>
+                    <TextBlock Grid.Row="26" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" >检验医师：</TextBlock>
+                    <TextBlock Grid.Row="26" Grid.Column="4" HorizontalAlignment="Center"  VerticalAlignment="Center" >审核医师：</TextBlock>
+                    <TextBlock Grid.Row="26" Grid.Column="7" HorizontalAlignment="Center"  VerticalAlignment="Center" >报告时间：</TextBlock>
+                    <TextBox Name="C_JJYS" Grid.Row="26" Grid.Column="2"   VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+                    <TextBox Name="C_SHYS" Grid.Row="26" Grid.Column="5"    VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
+                    <DatePicker Name="C_bgrq" Grid.Row="26" Grid.Column="8"   VerticalAlignment="Center"  VerticalContentAlignment="Center"></DatePicker>
+                    <Button Style="{StaticResource BtnInfoStyle}" Name="AddUser" Grid.Column="7" Grid.Row="1" Grid.RowSpan="2" Margin="5 5 5 5" Click="AddUser_Click">新建病例</Button>
+                    <Button Style="{StaticResource BtnInfoStyle}" Name="SaveUser" Grid.Column="8" Grid.Row="1"  Grid.RowSpan="2" Margin="5 5 5 5" Click="SaveUser_Click">保存病例</Button>
+                    <Button Style="{StaticResource BtnInfoStyle}" Grid.Row="5" Grid.Column="5" Margin="10 1 10 1" Click="AddSamplePic_Click">添加图样</Button>
+                    <Button Style="{StaticResource BtnInfoStyle}" Grid.Row="5" Grid.Column="6" Margin="10 1 10 1" Click="SamplePic_Click">采集图片</Button>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="5" Grid.Row="6" Grid.ColumnSpan="4" Grid.RowSpan="12">
+                        <WrapPanel Name="Parasites"  >
+                        </WrapPanel>
+                    </ScrollViewer>
+                    <TextBlock Grid.Column="5" Grid.Row="20">诊断意见:</TextBlock>
+                    <TextBox AllowDrop="True" TextWrapping = "Wrap"  AcceptsReturn="True" Name="C_Diagnose" Grid.Column="5" Grid.Row="21" Grid.RowSpan="4" Grid.ColumnSpan="4"></TextBox>
+                </Grid>
+            </TabItem>
+
+            <!-- Report View-->
+            <TabItem x:Name="View"  Header="报告"  Width="80px">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="1519*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal"  Grid.ColumnSpan="2">
+                        <Button Style="{StaticResource BtnInfoStyle}"   Margin="5,5" FontSize="18"  Width="90" HorizontalAlignment="Left" Name="FastPrintf" Click="FastPrintf_Click">直接打印</Button>
+                        <Button Style="{StaticResource BtnInfoStyle}" Margin="5,5" FontSize="18"  Width="60" HorizontalAlignment="Left" Name="Printf" Click="Printf_Click">打印</Button>
+                        <!--<Button Margin="5,5" FontSize="18"  Width="90" HorizontalAlignment="Left" Name="BeachPrintf" Click="BeachPrintf_Click">批量打印</Button>-->
+                        <Button Style="{StaticResource BtnInfoStyle}" Margin="5,5" FontSize="18"  Width="90" HorizontalAlignment="Left" Name="SetFont" Click="SetFont_Click">抬头设置</Button>
+                    </StackPanel>
+                    <WebBrowser  Grid.Row="1" Width="auto"  x:Name="Report" Grid.ColumnSpan="2" IsEnabled="False"  />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

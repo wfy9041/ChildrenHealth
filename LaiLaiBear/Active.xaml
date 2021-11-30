@@ -1,0 +1,36 @@
+﻿<Window x:Class="LaiLaiBear.Active"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaiLaiBear"
+        mc:Ignorable="d"
+        Title="软件激活" Height="250" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Canvas>
+        <TextBlock FontSize="20" Canvas.Left="100" Canvas.Top="15" >序列号：</TextBlock>
+        <TextBlock FontSize="20" Canvas.Top="45" Canvas.Left="20" Width="250" Name="Serial" TextAlignment="Center"></TextBlock>
+        <TextBox FontSize="20" Canvas.Top="75" Canvas.Left="20" Width="250"  TextAlignment="Center" Name="lic">
+            <TextBox.Resources>
+                <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Center">
+                    <VisualBrush.Visual>
+                        <TextBlock FontStyle="Italic" Text="请输入授权码"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </TextBox.Resources>
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource HintText}"/>
+                        </Trigger>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="Background" Value="{StaticResource HintText}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <Button Name="Act" Canvas.Top="120" Canvas.Left="100" Width="100" Height="40" Click="Act_Click">激活</Button>
+        <TextBlock FontSize="18" Canvas.Left="50" Canvas.Bottom="10" >请从供应商处索取授权码</TextBlock>
+    </Canvas>
+</Window>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+    <title></title>
+    <style>
+        @charset "utf-8";
+
+        img {
+            max-width: 100%
+        }
+
+        body {
+            margin: 0 auto;
+            color: #222;
+            font-weight: bold;
+            font-family: '宋体';
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box
+        }
+
+        body a {
+            font-family: '宋体';
+            font-weight: bold;
+            color: #222
+        }
+
+        ul, li, p {
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        i {
+            font-style: normal
+        }
+
+        .ui-input {
+            width: 100%;
+            border: 0;
+            outline: 0;
+            -webkit-appearance: none;
+            background-color: transparent;
+            font-size: inherit;
+            color: inherit
+        }
+
+        .page-container {
+            padding: 10px 0
+        }
+
+        .main {
+            width: 1024px;
+            margin: 0 auto
+        }
+
+        .page-head {
+            text-align: center;
+            margin-bottom: 13px
+        }
+
+            .page-head .page-title {
+                font-size: 50px;
+                font-family: '[#HospitalFont#]';
+                color:[#HospitalColor#];
+            }
+
+            .page-head .page-desc {
+                font-size: 32px;
+                margin-top: 10px;
+                font-weight: normal;
+                font-family: '[#ReportFont#]';
+                color:[#ReportColor#];
+            }
+
+        .page-up-grid {
+            border-top: 3px solid #393938;
+            padding-top: 3px
+        }
+
+        .page-updn-grid {
+            border-top: 3px solid #393938;
+            border-bottom: 3px solid #393938
+        }
+
+        .page-grid {
+            overflow: hidden;
+            padding: 10px 0
+        }
+
+            .page-grid .col {
+                padding: 4px 0;
+                float: left;
+                width: 33.33%
+            }
+
+        .info-row {
+            height: 30px;
+            position: relative;
+            padding-left: 110px;
+            font-size: 22px
+        }
+
+            .info-row .txt {
+                position: absolute;
+                left: 0;
+                top: 0;
+                font-size: 22px;
+                height: 30px;
+                line-height: 30px
+            }
+
+            .info-row .ui-input {
+                height: 30px;
+                line-height: 30px
+            }
+
+
+        .foot-info {
+            overflow: hidden;
+            font-size: 18px;
+            line-height: 1.4
+        }
+
+            .foot-info .hd {
+                float: left
+            }
+
+            .foot-info .bd {
+                overflow: hidden
+            }
+
+        .section {
+            padding: 8px 0
+        }
+
+        .sec-hd {
+            margin-bottom: 15px;
+            margin-top: 10px;
+            height: 24px
+        }
+
+            .sec-hd .sec-tt {
+                float: left;
+                font-size: 22px;
+                font-weight: bold;
+                line-height: 24px
+            }
+
+        .jsc-style {
+            overflow: hidden
+        }
+
+            .jsc-style li {
+                float: left;
+                width: 50%;
+                padding: 5px 0
+            }
+
+            .jsc-style .jsc-box {
+                width: 250px;
+                margin: 0 auto
+            }
+
+        .jsc-pic {
+            font-size: 0;
+            line-height: 1;
+            border: 1px solid #40413e
+        }
+
+            .jsc-pic img {
+                width: 250px;
+                display: block;
+                height: 250px
+            }
+
+        .jsc-intro {
+            font-size: 0;
+            text-align: center;
+            margin-top: 10px
+        }
+
+            .jsc-intro * {
+                display: inline-block;
+                vertical-align: middle
+            }
+
+            .jsc-intro .ui-input {
+                height: 24px;
+                line-height: 24px;
+                width: 32px;
+                font-size: 18px;
+                text-align: center;
+                border-bottom: 1px solid #40413e
+            }
+
+            .jsc-intro span {
+                font-size: 20px
+            }
+
+            .jsc-intro .jsc-name {
+                margin-right: 13px
+            }
+
+        .checks {
+            height: 24px;
+            float: left;
+            margin-left: 40px;
+        }
+
+            .checks .check-label {
+                display: block;
+                float: left;
+                line-height: 24px;
+                cursor: pointer;
+                margin-right: 90px
+            }
+
+                .checks .check-label * {
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin: 0;
+                    font-weight: normal
+                }
+
+                .checks .check-label span {
+                    font-size: 18px;
+                    margin-left: 10px;
+                    font-weight: bold
+                }
+
+                .checks .check-label input {
+                    width: 18px;
+                    height: 18px
+                }
+
+        .table {
+            border: 1px solid #40413e;
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            text-align: center
+        }
+
+            .table td {
+                font-size: 16px;
+                height: 26px;
+                border: 1px solid #40413e
+            }
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+    <div class="page-container">
+        <div class="page-head">
+			
+            <div class="page-title"><img class="logo-img" src="./hlogo.png"  />[#Hospital#]</div>
+            <div class="page-desc">[#Report#]</div>
+        </div>
+        
+        <div class="main">
+            <!-- 基本信息 -->
+            <div class="page-grid page-updn-grid">
+                <div class="col">
+                    <div class="info-row" style="padding-left: 80px;">
+                        <div class="txt">姓名：</div>
+                        <div class="ui-input">[#姓名#] </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="info-row">
+                        <div class="txt">性别：</div>
+                        <div class="ui-input">[#性别#] </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="info-row">
+                        <div class="txt">年龄：</div>
+                        <div class="ui-input">[#年龄#] </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="info-row" style="padding-left: 80px;">
+                        <div class="txt">科室：</div>
+                        <div class="ui-input">[#科室#]</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="info-row">
+                        <div class="txt">住院号：</div>
+                        <div class="ui-input">[#住院号#]</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="info-row">
+                        <div class="txt">标本编号：</div>
+                        <div class="ui-input">[#标本编号#]</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="info-row" style="padding-left: 80px;">
+                        <div class="txt">床号：</div>
+                        <div class="ui-input">[#床号#]</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="info-row">
+                        <div class="txt">送检医师：</div>
+                        <div class="ui-input">[#送检医师#]</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="info-row">
+                        <div class="txt">送检时间：</div>
+                        <div class="ui-input">[#送检时间#]</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 标本满意度 -->
+            <div class="section">
+                <div class="sec-hd">
+                    <div class="sec-tt">标本满意度</div>
+                    <div class="checks">
+                        <label class="check-label">
+                            <span>[#满意#]满意</span>
+                        </label>
+                        <label class="check-label">
+                            <span>[#基本满意#]基本满意</span>
+                        </label>
+                        <label class="check-label">
+                            <span>[#需要重新采样#]需要重新采样</span>
+                        </label>
+                    </div>
+                </div>
+                <table class="table">
+                    <tr>
+                        <td width="190">寄生虫类型</td>
+                        <td width="244">结果</td>
+                        <td width="284">寄生虫类型</td>
+                        <td>结果</td>
+                    </tr>
+                    <tr>
+                        <td>蛔虫</td>
+                        <td>[#蛔虫#]</td>
+                        <td>蛲虫</td>
+                        <td>[#蛲虫#]</td>
+                    </tr>
+                    <tr>
+                        <td>钩虫</td>
+                        <td>[#钩虫#]</td>
+                        <td>绦虫</td>
+                        <td>[#绦虫#]</td>
+                    </tr>
+                    <tr>
+                        <td>鞭虫</td>
+                        <td>[#鞭虫#]</td>
+                        <td>未受精蛔虫卵</td>
+                        <td>[#未受精蛔虫卵#]</td>
+                    </tr>
+                    <tr>
+                        <td>布氏姜片吸虫</td>
+                        <td>[#布氏姜片吸虫#]</td>
+                        <td>日本血吸虫</td>
+                        <td>[#日本血吸虫#]</td>
+                    </tr>
+                    <tr>
+                        <td>微小膜壳绦虫</td>
+                        <td>[#微小膜壳绦虫#]</td>
+                        <td>缩小膜壳绦虫</td>
+                        <td>[#缩小膜壳绦虫#]</td>
+                    </tr>
+                    <tr>
+                        <td>十二指肠钩虫卵</td>
+                        <td>[#十二指肠钩虫卵#]</td>
+                        <td>曼氏血吸虫</td>
+                        <td>[#曼氏血吸虫#]</td>
+                    </tr>
+                    <tr>
+                        <td>肝片吸虫</td>
+                        <td>[#肝片吸虫#]</td>
+                        <td>粪类圆线虫</td>
+                        <td>[#粪类圆线虫#]</td>
+                    </tr>
+                    <tr>
+                        <td>蓝氏贾第鞭毛虫</td>
+                        <td>[#蓝氏贾第鞭毛虫#]</td>
+                        <td>溶组织内阿米巴</td>
+                        <td>[#溶组织内阿米巴#]</td>
+                    </tr>
+                    <tr>
+                        <td>结肠内阿米巴</td>
+                        <td>[#结肠内阿米巴#]</td>
+                        <td>微小阿米巴</td>
+                        <td>[#微小阿米巴#]</td>
+                    </tr>
+                    <tr>
+                        <td>布氏嗜碘阿米巴</td>
+                        <td>[#布氏嗜碘阿米巴#]</td>
+                        <td>隐孢子虫</td>
+                        <td>[#隐孢子虫#]</td>
+                    </tr>
+                    <tr>
+                        <td>结肠小袋纤毛虫</td>
+                        <td>[#结肠小袋纤毛虫#]</td>
+                        <td>贝氏等孢子球虫</td>
+                        <td>[#贝氏等孢子球虫#]</td>
+                    </tr>
+                    <tr>
+                        <td>华支睾吸虫</td>
+                        <td>[#华支睾吸虫#]</td>
+                        <td>犬弓首蛔虫</td>
+                        <td>[#犬弓首蛔虫#]</td>
+                    </tr>
+                    <tr>
+                        <td>卫氏并殖吸虫</td>
+                        <td>[#卫氏并殖吸虫#]</td>
+                        <td>犬复孔绦虫</td>
+                        <td>[#犬复孔绦虫#]</td>
+                    </tr>
+                    <tr>
+                        <td>犬钩虫</td>
+                        <td>[#犬钩虫#]</td>
+                        <td>犬钩虫孵化幼虫</td>
+                        <td>[#犬钩虫孵化幼虫#]</td>
+                    </tr>
+                    <tr>
+                        <td>呼吸道毛线虫</td>
+                        <td>[#呼吸道毛线虫#]</td>
+                        <td>蠕形肠蛲虫</td>
+                        <td>[#蠕形肠蛲虫#]</td>
+                    </tr>
+                    <tr>
+                        <td>十二指肠钩虫</td>
+                        <td>[#十二指肠钩虫#]</td>
+                        <td>钩虫丝状蚴</td>
+                        <td>[#钩虫丝状蚴#]</td>
+                    </tr>
+                    <tr>
+                        <td>粪类圆线虫杆状蚴</td>
+                        <td>[#粪类圆线虫杆状蚴#]</td>
+                        <td>肝片形吸虫尾蚴</td>
+                        <td>[#肝片形吸虫尾蚴#]</td>
+                    </tr>
+                    <tr>
+                        <td>异形吸虫</td>
+                        <td>[#异形吸虫#]</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <!-- 寄生虫类型 -->
+            <div class="section">
+                <!--<div class="sec-hd">
+                    <div class="sec-tt">寄生虫类型</div>
+                </div>-->
+                <ul class="jsc-style">
+                    <li>
+                        <div class="jsc-box">
+                            <div class="jsc-pic">
+                                <img src="[#img1#]">
+                            </div>
+                            <div class="jsc-intro">
+                                <span class="jsc-name">[#虫名1#]</span>
+                                <!--<span>有</span>
+                                <span><u>[#数量1#]</u></span>
+                                <span>个</span>-->
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="jsc-box">
+                            <div class="jsc-pic">
+                                <img src="[#img2#]">
+                            </div>
+                            <div class="jsc-intro">
+                                <span class="jsc-name">[#虫名2#]</span>
+                                <!--<span>有</span>
+                                <span><u>[#数量2#]</u></span>
+                                <span>个</span>-->
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col" style="padding-bottom:5px;height:auto;min-height:95px">
+                <div class="info-row" style="padding-bottom:5px;height:auto;min-height:95px">
+                    <div class="txt">诊断意见：</div>
+                    <div class="ui-input" style="border:1px solid Black;height:auto;min-height:145px">[#诊断意见#]</div>
+                </div>
+            </div>
+            <!-- footer -->
+            <div class="foot">
+                <div class="page-grid page-up-grid">
+                    <div class="col">
+                        <div class="info-row">
+                            <div class="txt">检验师：</div>
+                            <div class="ui-input">[#检验师#]</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="info-row">
+                            <div class="txt">审核医生：</div>
+                            <div class="ui-input">[#审核医生#]</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="info-row">
+                            <div class="txt">报告日期：</div>
+                            <div class="ui-input">[#报告日期#]</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="foot-info">
+                    <div class="hd">注:</div>
+                    <div class="bd">
+                        <p>1.此报告只针对本次样本,检测结果和提示仅供临床医生参考。</p>
+                        <p>2.若临床医师对本诊断有疑问,请立即与检验有关医师联系。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
